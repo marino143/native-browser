@@ -7,25 +7,16 @@ struct ProfileMenuView: View {
 
     var body: some View {
         Menu {
-            Section("Switch Profile (this window)") {
-                ForEach(services.profiles) { profile in
-                    Button {
-                        state.switchProfile(to: profile)
-                    } label: {
-                        if profile.id == state.currentProfileID {
-                            Label(profile.name, systemImage: "checkmark")
-                        } else {
-                            Text(profile.name)
-                        }
-                    }
-                }
-            }
             Section("Open in New Window") {
                 ForEach(services.profiles) { profile in
                     Button {
                         openWindow(id: "browser-window-profile", value: profile.id)
                     } label: {
-                        Label(profile.name, systemImage: "macwindow.badge.plus")
+                        if profile.id == state.currentProfileID {
+                            Label("\(profile.name) (this window)", systemImage: "checkmark")
+                        } else {
+                            Label(profile.name, systemImage: "macwindow.badge.plus")
+                        }
                     }
                 }
             }

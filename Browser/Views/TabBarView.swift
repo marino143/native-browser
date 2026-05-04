@@ -8,6 +8,8 @@ struct TabBarView: View {
 
     var body: some View {
         HStack(spacing: 4) {
+            // Leading inset so traffic lights (close/minimize/maximize) don't overlap the first tab.
+            Spacer().frame(width: 76)
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 4) {
                     ForEach(userTabs) { tab in
@@ -20,20 +22,19 @@ struct TabBarView: View {
                         TabItem(tab: tab)
                     }
                 }
-                .padding(.horizontal, 8)
                 .animation(.easeInOut(duration: 0.18), value: state.tabs.map(\.id))
                 .animation(.easeInOut(duration: 0.18), value: state.tabs.map(\.source))
             }
             Button(action: { state.newTab() }) {
                 Image(systemName: "plus")
                     .font(.system(size: 12, weight: .medium))
-                    .frame(width: 26, height: 26)
+                    .frame(width: 24, height: 24)
                     .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
             .padding(.trailing, 8)
         }
-        .frame(height: 36)
+        .frame(height: 32)
         .background(.ultraThinMaterial)
     }
 }

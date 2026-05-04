@@ -39,6 +39,7 @@ struct BrowserWindow: View {
             .environmentObject(state)
             .preferredColorScheme(.dark)
             .frame(minWidth: 900, minHeight: 560)
+            .ignoresSafeArea(.container, edges: .top)
             .focusedSceneValue(\.activeBrowserState, state)
             .background(WindowAccessor { window in
                 BrowserServices.shared.bind(window: window, to: state)
@@ -49,22 +50,36 @@ struct BrowserWindow: View {
     }
 }
 
-/// Lets us reach the underlying NSWindow so we can map it to its BrowserState.
+/// Lets us reach the underlying NSWindow: 1) map it to its BrowserState,
+/// 2) push content up to the very top of the window so tabs sit inline with traffic lights.
 struct WindowAccessor: NSViewRepresentable {
     let onWindow: (NSWindow) -> Void
 
     func makeNSView(context: Context) -> NSView {
         let view = NSView()
         DispatchQueue.main.async {
-            if let window = view.window { onWindow(window) }
+            if let window = view.window {
+                Self.configureChrome(window)
+                onWindow(window)
+            }
         }
         return view
     }
 
     func updateNSView(_ nsView: NSView, context: Context) {
         DispatchQueue.main.async {
-            if let window = nsView.window { onWindow(window) }
+            if let window = nsView.window {
+                Self.configureChrome(window)
+                onWindow(window)
+            }
         }
+    }
+
+    private static func configureChrome(_ window: NSWindow) {
+        window.titlebarAppearsTransparent = true
+        window.titleVisibility = .hidden
+        window.styleMask.insert(.fullSizeContentView)
+        // Keep traffic-light buttons visible (they overlay our content area).
     }
 }
 
