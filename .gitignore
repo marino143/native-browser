@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+
+# Xcode user-specific files (window layout, breakpoints, recently opened, schemes per user)
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad/
+project.xcworkspace/xcuserdata/
+
+# Xcode build output / derived data (not normally inside repo, but just in case)
+build/
+DerivedData/
+*.dSYM.zip
+*.dSYM
+.build/
+
+# Swift package manager
+Package.resolved
+.swiftpm/
+
+# Local certs / signing
+*.mobileprovision
+*.p12
+
+# Generated / temp
+*.ipa
+*.swp
+.idea/
+.vscode/

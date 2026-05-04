@@ -1,0 +1,379 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A0000000000000000000001 /* BrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000001 /* BrowserApp.swift */; };
+		2A0000000000000000000002 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000002 /* Tab.swift */; };
+		2A0000000000000000000003 /* BrowserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000003 /* BrowserState.swift */; };
+		2A0000000000000000000004 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000004 /* Bookmark.swift */; };
+		2A0000000000000000000005 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000005 /* ContentView.swift */; };
+		2A0000000000000000000006 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000006 /* TabBarView.swift */; };
+		2A0000000000000000000007 /* AddressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000007 /* AddressBarView.swift */; };
+		2A0000000000000000000008 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000008 /* WebView.swift */; };
+		2A0000000000000000000009 /* BookmarksBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000009 /* BookmarksBarView.swift */; };
+		2A000000000000000000000A /* AdBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000000A /* AdBlocker.swift */; };
+		2A000000000000000000000B /* BookmarksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000000B /* BookmarksManager.swift */; };
+		2A000000000000000000000C /* BlockerRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000000C /* BlockerRules.swift */; };
+		2A000000000000000000001D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000001D /* Profile.swift */; };
+		2A000000000000000000001E /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000001E /* ProfileManager.swift */; };
+		2A000000000000000000001F /* ProfileMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000001F /* ProfileMenuView.swift */; };
+		2A0000000000000000000020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000020 /* Assets.xcassets */; };
+		2A0000000000000000000021 /* ProfileManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000021 /* ProfileManagerView.swift */; };
+		2A0000000000000000000023 /* MCPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000023 /* MCPServer.swift */; };
+		2A0000000000000000000024 /* BrowserTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000024 /* BrowserTools.swift */; };
+		2A0000000000000000000025 /* ClaudeIntegrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000025 /* ClaudeIntegrationView.swift */; };
+		2A0000000000000000000027 /* BookmarksManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000027 /* BookmarksManagerView.swift */; };
+		2A0000000000000000000028 /* BrowserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000028 /* BrowserServices.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A0000000000000000000001 /* BrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserApp.swift; sourceTree = "<group>"; };
+		1A0000000000000000000002 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		1A0000000000000000000003 /* BrowserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserState.swift; sourceTree = "<group>"; };
+		1A0000000000000000000004 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		1A0000000000000000000005 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1A0000000000000000000006 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		1A0000000000000000000007 /* AddressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBarView.swift; sourceTree = "<group>"; };
+		1A0000000000000000000008 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		1A0000000000000000000009 /* BookmarksBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksBarView.swift; sourceTree = "<group>"; };
+		1A000000000000000000000A /* AdBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdBlocker.swift; sourceTree = "<group>"; };
+		1A000000000000000000000B /* BookmarksManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksManager.swift; sourceTree = "<group>"; };
+		1A000000000000000000000C /* BlockerRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockerRules.swift; sourceTree = "<group>"; };
+		1A000000000000000000001D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		1A000000000000000000001E /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		1A000000000000000000001F /* ProfileMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuView.swift; sourceTree = "<group>"; };
+		1A0000000000000000000020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A0000000000000000000021 /* ProfileManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerView.swift; sourceTree = "<group>"; };
+		1A0000000000000000000023 /* MCPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCPServer.swift; sourceTree = "<group>"; };
+		1A0000000000000000000024 /* BrowserTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserTools.swift; sourceTree = "<group>"; };
+		1A0000000000000000000025 /* ClaudeIntegrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeIntegrationView.swift; sourceTree = "<group>"; };
+		1A0000000000000000000026 /* Browser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Browser.entitlements; sourceTree = "<group>"; };
+		1A0000000000000000000027 /* BookmarksManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksManagerView.swift; sourceTree = "<group>"; };
+		1A0000000000000000000028 /* BrowserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserServices.swift; sourceTree = "<group>"; };
+		1A00000000000000000000F0 /* Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Browser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4A0000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A0000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				3A0000000000000000000002 /* Browser */,
+				3A0000000000000000000006 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3A0000000000000000000002 /* Browser */ = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000001 /* BrowserApp.swift */,
+				3A0000000000000000000003 /* Models */,
+				3A0000000000000000000004 /* Views */,
+				3A0000000000000000000005 /* Services */,
+				1A0000000000000000000020 /* Assets.xcassets */,
+				1A0000000000000000000026 /* Browser.entitlements */,
+			);
+			path = Browser;
+			sourceTree = "<group>";
+		};
+		3A0000000000000000000003 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000002 /* Tab.swift */,
+				1A0000000000000000000003 /* BrowserState.swift */,
+				1A0000000000000000000004 /* Bookmark.swift */,
+				1A000000000000000000001D /* Profile.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3A0000000000000000000004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A0000000000000000000005 /* ContentView.swift */,
+				1A0000000000000000000006 /* TabBarView.swift */,
+				1A0000000000000000000007 /* AddressBarView.swift */,
+				1A0000000000000000000008 /* WebView.swift */,
+				1A0000000000000000000009 /* BookmarksBarView.swift */,
+				1A000000000000000000001F /* ProfileMenuView.swift */,
+				1A0000000000000000000021 /* ProfileManagerView.swift */,
+				1A0000000000000000000025 /* ClaudeIntegrationView.swift */,
+				1A0000000000000000000027 /* BookmarksManagerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3A0000000000000000000005 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1A000000000000000000000A /* AdBlocker.swift */,
+				1A000000000000000000000B /* BookmarksManager.swift */,
+				1A000000000000000000000C /* BlockerRules.swift */,
+				1A000000000000000000001E /* ProfileManager.swift */,
+				1A0000000000000000000023 /* MCPServer.swift */,
+				1A0000000000000000000024 /* BrowserTools.swift */,
+				1A0000000000000000000028 /* BrowserServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3A0000000000000000000006 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A00000000000000000000F0 /* Browser.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5A0000000000000000000001 /* Browser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A0000000000000000000002 /* Build configuration list for PBXNativeTarget "Browser" */;
+			buildPhases = (
+				4A0000000000000000000001 /* Sources */,
+				4A0000000000000000000002 /* Frameworks */,
+				4A0000000000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Browser;
+			productName = Browser;
+			productReference = 1A00000000000000000000F0 /* Browser.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6A0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					5A0000000000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 8A0000000000000000000001 /* Build configuration list for PBXProject "Browser" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3A0000000000000000000001;
+			productRefGroup = 3A0000000000000000000006 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5A0000000000000000000001 /* Browser */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4A0000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A0000000000000000000020 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4A0000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A0000000000000000000001 /* BrowserApp.swift in Sources */,
+				2A0000000000000000000002 /* Tab.swift in Sources */,
+				2A0000000000000000000003 /* BrowserState.swift in Sources */,
+				2A0000000000000000000004 /* Bookmark.swift in Sources */,
+				2A0000000000000000000005 /* ContentView.swift in Sources */,
+				2A0000000000000000000006 /* TabBarView.swift in Sources */,
+				2A0000000000000000000007 /* AddressBarView.swift in Sources */,
+				2A0000000000000000000008 /* WebView.swift in Sources */,
+				2A0000000000000000000009 /* BookmarksBarView.swift in Sources */,
+				2A000000000000000000000A /* AdBlocker.swift in Sources */,
+				2A000000000000000000000B /* BookmarksManager.swift in Sources */,
+				2A000000000000000000000C /* BlockerRules.swift in Sources */,
+				2A000000000000000000001D /* Profile.swift in Sources */,
+				2A000000000000000000001E /* ProfileManager.swift in Sources */,
+				2A000000000000000000001F /* ProfileMenuView.swift in Sources */,
+				2A0000000000000000000021 /* ProfileManagerView.swift in Sources */,
+				2A0000000000000000000023 /* MCPServer.swift in Sources */,
+				2A0000000000000000000024 /* BrowserTools.swift in Sources */,
+				2A0000000000000000000025 /* ClaudeIntegrationView.swift in Sources */,
+				2A0000000000000000000027 /* BookmarksManagerView.swift in Sources */,
+				2A0000000000000000000028 /* BrowserServices.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7A0000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7A0000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		7A0000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Browser/Browser.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Native;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.native.browser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7A0000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Browser/Browser.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Native;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.native.browser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8A0000000000000000000001 /* Build configuration list for PBXProject "Browser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A0000000000000000000001 /* Debug */,
+				7A0000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A0000000000000000000002 /* Build configuration list for PBXNativeTarget "Browser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A0000000000000000000003 /* Debug */,
+				7A0000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6A0000000000000000000001 /* Project object */;
+}
