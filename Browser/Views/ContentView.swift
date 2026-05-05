@@ -23,6 +23,14 @@ struct ContentView: View {
             }
         }
         .background(Color(NSColor.windowBackgroundColor))
+        .overlay(alignment: .top) {
+            if let pending = state.pendingPasswordSave {
+                PasswordSavePromptView(pending: pending)
+                    .padding(.top, 32)  // sit below the tab bar / traffic-light row
+                    .zIndex(50)
+            }
+        }
+        .animation(.easeInOut(duration: 0.18), value: state.pendingPasswordSave)
         .sheet(isPresented: profileManagerBinding) {
             ProfileManagerView()
                 .environmentObject(state)
@@ -33,6 +41,10 @@ struct ContentView: View {
         }
         .sheet(isPresented: bookmarksManagerBinding) {
             BookmarksManagerView()
+                .environmentObject(state)
+        }
+        .sheet(isPresented: passwordsManagerBinding) {
+            PasswordsManagerView()
                 .environmentObject(state)
         }
     }
@@ -55,6 +67,13 @@ struct ContentView: View {
         Binding(
             get: { state.showingBookmarksManager },
             set: { state.showingBookmarksManager = $0 }
+        )
+    }
+
+    private var passwordsManagerBinding: Binding<Bool> {
+        Binding(
+            get: { state.showingPasswordsManager },
+            set: { state.showingPasswordsManager = $0 }
         )
     }
 }

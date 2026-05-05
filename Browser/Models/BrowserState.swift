@@ -17,6 +17,9 @@ final class BrowserState: ObservableObject {
     @Published var showingProfileManager: Bool = false
     @Published var showingClaudeIntegration: Bool = false
     @Published var showingBookmarksManager: Bool = false
+    @Published var showingPasswordsManager: Bool = false
+    @Published var pendingPasswordSave: PendingPasswordSave?
+    private(set) lazy var autofillBridge = AutofillBridge(state: self)
 
     var services: BrowserServices { .shared }
 
@@ -60,7 +63,25 @@ final class BrowserState: ObservableObject {
         if services.adBlockerEnabled, let rules = services.contentRuleList {
             config.userContentController.add(rules)
         }
+        // Wire up password autofill: inject content script + register message handler.
+        config.userContentController.addUserScript(AutofillBridge.userScript)
+        config.userContentController.add(autofillBridge, name: AutofillBridge.messageName)
         return config
+    }
+
+    func savePendingPassword() {
+        guard let pending = pendingPasswordSave else { return }
+        PasswordStore.shared.save(
+            host: pending.host,
+            username: pending.username,
+            password: pending.password,
+            profileID: currentProfileID
+        )
+        pendingPasswordSave = nil
+    }
+
+    func dismissPendingPassword() {
+        pendingPasswordSave = nil
     }
 
     func newTab(url: URL? = nil, source: TabSource = .user) {

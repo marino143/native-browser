@@ -29,6 +29,10 @@
 		2A0000000000000000000025 /* ClaudeIntegrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000025 /* ClaudeIntegrationView.swift */; };
 		2A0000000000000000000027 /* BookmarksManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000027 /* BookmarksManagerView.swift */; };
 		2A0000000000000000000028 /* BrowserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000028 /* BrowserServices.swift */; };
+		2A0000000000000000000029 /* PasswordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000000000000000000029 /* PasswordStore.swift */; };
+		2A000000000000000000002A /* AutofillBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000002A /* AutofillBridge.swift */; };
+		2A000000000000000000002B /* PasswordSavePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000002B /* PasswordSavePromptView.swift */; };
+		2A000000000000000000002C /* PasswordsManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A000000000000000000002C /* PasswordsManagerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +59,10 @@
 		1A0000000000000000000026 /* Browser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Browser.entitlements; sourceTree = "<group>"; };
 		1A0000000000000000000027 /* BookmarksManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksManagerView.swift; sourceTree = "<group>"; };
 		1A0000000000000000000028 /* BrowserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserServices.swift; sourceTree = "<group>"; };
+		1A0000000000000000000029 /* PasswordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStore.swift; sourceTree = "<group>"; };
+		1A000000000000000000002A /* AutofillBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofillBridge.swift; sourceTree = "<group>"; };
+		1A000000000000000000002B /* PasswordSavePromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSavePromptView.swift; sourceTree = "<group>"; };
+		1A000000000000000000002C /* PasswordsManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordsManagerView.swift; sourceTree = "<group>"; };
 		1A00000000000000000000F0 /* Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Browser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -113,6 +121,8 @@
 				1A0000000000000000000021 /* ProfileManagerView.swift */,
 				1A0000000000000000000025 /* ClaudeIntegrationView.swift */,
 				1A0000000000000000000027 /* BookmarksManagerView.swift */,
+				1A000000000000000000002B /* PasswordSavePromptView.swift */,
+				1A000000000000000000002C /* PasswordsManagerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -127,6 +137,8 @@
 				1A0000000000000000000023 /* MCPServer.swift */,
 				1A0000000000000000000024 /* BrowserTools.swift */,
 				1A0000000000000000000028 /* BrowserServices.swift */,
+				1A0000000000000000000029 /* PasswordStore.swift */,
+				1A000000000000000000002A /* AutofillBridge.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -229,6 +241,10 @@
 				2A0000000000000000000025 /* ClaudeIntegrationView.swift in Sources */,
 				2A0000000000000000000027 /* BookmarksManagerView.swift in Sources */,
 				2A0000000000000000000028 /* BrowserServices.swift in Sources */,
+				2A0000000000000000000029 /* PasswordStore.swift in Sources */,
+				2A000000000000000000002A /* AutofillBridge.swift in Sources */,
+				2A000000000000000000002B /* PasswordSavePromptView.swift in Sources */,
+				2A000000000000000000002C /* PasswordsManagerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

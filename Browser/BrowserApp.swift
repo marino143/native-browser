@@ -129,6 +129,9 @@ struct BrowserCommands: Commands {
             Button("Bookmarks…") { state?.showingBookmarksManager = true }
                 .keyboardShortcut("b", modifiers: [.command, .option])
                 .disabled(state == nil)
+            Button("Passwords…") { state?.showingPasswordsManager = true }
+                .keyboardShortcut(";", modifiers: [.command, .option])
+                .disabled(state == nil)
             Button(services.adBlockerEnabled ? "Disable Ad Blocker" : "Enable Ad Blocker") {
                 services.toggleAdBlocker()
             }

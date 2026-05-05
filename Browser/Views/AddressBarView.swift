@@ -67,6 +67,28 @@ struct AddressBarView: View {
                     .scaleEffect(0.6)
                     .frame(width: 14)
             }
+            if hasSavedPassword {
+                Menu {
+                    ForEach(savedCredentials, id: \.id) { cred in
+                        Button {
+                            autofill(cred)
+                        } label: {
+                            Label(cred.username, systemImage: "person.crop.circle")
+                        }
+                    }
+                    Divider()
+                    Button("Manage Passwords…") { state.showingPasswordsManager = true }
+                        .keyboardShortcut(";", modifiers: [.command, .option])
+                } label: {
+                    Image(systemName: "key.fill")
+                        .foregroundStyle(.yellow)
+                        .font(.system(size: 12))
+                }
+                .menuStyle(.borderlessButton)
+                .menuIndicator(.hidden)
+                .fixedSize()
+                .help("Saved password — click to autofill")
+            }
             Button(action: { state.toggleBookmark() }) {
                 Image(systemName: isBookmarked ? "star.fill" : "star")
                     .foregroundStyle(isBookmarked ? Color.yellow : .secondary)
@@ -194,6 +216,28 @@ struct AddressBarView: View {
     private var isBookmarked: Bool {
         guard let url = state.currentTab?.webView?.url?.absoluteString else { return false }
         return state.bookmarks.contains { $0.url == url }
+    }
+
+    private var savedCredentials: [PasswordCredential] {
+        guard let host = state.currentTab?.webView?.url?.host else { return [] }
+        return PasswordStore.shared.credentials(forHost: host, profileID: state.currentProfileID)
+    }
+
+    private var hasSavedPassword: Bool { !savedCredentials.isEmpty }
+
+    private func autofill(_ cred: PasswordCredential) {
+        guard let webView = state.currentTab?.webView,
+              let password = PasswordStore.shared.revealPassword(
+                host: cred.host, username: cred.username, profileID: state.currentProfileID
+              ) else { return }
+        let escapedUser = cred.username
+            .replacingOccurrences(of: "\\", with: "\\\\")
+            .replacingOccurrences(of: "\"", with: "\\\"")
+        let escapedPass = password
+            .replacingOccurrences(of: "\\", with: "\\\\")
+            .replacingOccurrences(of: "\"", with: "\\\"")
+        let js = "window.__nativeAutofillFill(\"\(escapedUser)\", \"\(escapedPass)\");"
+        webView.evaluateJavaScript(js, completionHandler: nil)
     }
 
     private func syncFromTab() {

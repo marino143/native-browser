@@ -134,6 +134,7 @@ final class BrowserServices: ObservableObject {
             try? await WKWebsiteDataStore.remove(forIdentifier: dataStoreUUID)
         }
         bookmarksManager.deleteAllData(for: profile.id)
+        PasswordStore.shared.deleteAll(profileID: profile.id)
         // Any window currently on the deleted profile switches to first remaining.
         for state in allStates where state.currentProfileID == profile.id {
             if let next = profiles.first {
