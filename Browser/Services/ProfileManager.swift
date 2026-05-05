@@ -13,7 +13,7 @@ final class ProfileManager {
         guard let data = try? Data(contentsOf: url),
               let profiles = try? JSONDecoder().decode([Profile].self, from: data),
               !profiles.isEmpty else {
-            return [Profile(name: "Osobno", colorIndex: 0)]
+            return [Profile(name: "Personal", colorIndex: 0)]
         }
         return profiles
     }

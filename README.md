@@ -1,109 +1,109 @@
-# Native — laki ARM browser za Apple Silicon
+# Native — Lightweight ARM Browser for Apple Silicon
 
-Native macOS preglednik napisan u SwiftUI + WebKit. Built za M1/M2/M3 Mac. **~8 MB instaliran**, vs Chrome ~600 MB.
+Native macOS browser built with SwiftUI + WebKit. Built for M1/M2/M3 Macs. **~8 MB installed**, vs Chrome's ~600 MB.
 
-## Bitno
+## Highlights
 
-- **Native ARM64** binary (universal: arm64 + x86_64) — radi native na Apple Silicon
-- **WKWebView** (Apple WebKit) — isti engine kao Safari, ne Chromium → bolje baterijsko trajanje, brži cold start
-- **Default ad blocker** — nativni `WKContentRuleList` (kao Safari Content Blocker, ne Chrome extension)
-- **Multi-profil + multi-window** — odvojeni cookies / login state / bookmarks / passwords po profilu
-- **Memory Saver** — idle tabovi se uspavju nakon X min, vraćaju na klik
-- **Passwords** spremanje u **Apple Keychain** (sync preko iCloud Keychain ako app potpisan s Apple Developer ID-em)
-- **Mobile preview** — toggle UA na iPhone + 393×852 viewport
-- **Web Inspector** — right-click → Inspect Element (kao Safari)
-- **MCP HTTP server** ugrađen — Claude Code/Desktop se može spojiti i upravljati preglednikom (navigate, click, fill, screenshot, exec JS)
-- **Tab grupiranje** — tabovi koje Claude koristi su vizualno odvojeni s ✨ ikonom
+- **Native ARM64** binary (universal: arm64 + x86_64) — runs natively on Apple Silicon
+- **WKWebView** (Apple WebKit) — same engine as Safari, not Chromium → better battery life, faster cold start
+- **Default ad blocker** — native `WKContentRuleList` (like Safari Content Blocker, no Chrome-style extensions needed)
+- **Multi-profile + multi-window** — separate cookies / login state / bookmarks / passwords per profile
+- **Memory Saver** — idle tabs are discarded after X minutes, restored on click
+- **Passwords** stored in **Apple Keychain** (synced via iCloud Keychain when the app is signed with an Apple Developer ID)
+- **Mobile preview** — toggle UA to iPhone + 393×852 viewport
+- **Web Inspector** — right-click → Inspect Element (just like Safari)
+- **Built-in MCP HTTP server** — Claude Code/Desktop can connect and drive the browser (navigate, click, fill forms, screenshot, run JS)
+- **Tab grouping** — tabs Claude is operating on are visually separated with a ✨ indicator
 
-## Instalacija (za korisnike)
+## Installation (for users)
 
-### Skidanje
+### Download
 
-Najlakše: idi na **[Releases](https://github.com/marino143/native-browser/releases)** i skini najnoviji `Native-Browser-X.X.X.zip`.
+Easiest path: head to **[Releases](https://github.com/marino143/native-browser/releases)** and grab the latest `Native-Browser-X.X.X.zip`.
 
-### Otpakiranje
+### Install
 
 ```bash
 unzip Native-Browser-0.1.0.zip
 mv Browser.app /Applications/
 ```
 
-Ili dvoklik zip-a u Finderu i drag-drop `Browser.app` u Applications folder.
+Or just double-click the zip in Finder and drag `Browser.app` into your Applications folder.
 
-### Prvi launch — Gatekeeper
+### First launch — Gatekeeper
 
-App nije signiran s plaćenim Apple Developer ID-em (radi se o open-source projektu), pa će macOS Gatekeeper pri prvom otvaranju pokazati upozorenje **"Cannot be opened because the developer cannot be verified"**.
+The app is not signed with a paid Apple Developer ID (it's an open-source project), so on first launch macOS Gatekeeper will warn: **"Cannot be opened because the developer cannot be verified."**
 
-**Rješenje** — bilo koji od:
+**Workaround** — pick one:
 
-**Najlakše**: u Finderu, **right-click** na `Browser.app` → **"Open"** → potvrdi dialog. Drugi launch i kasnije normalno radi.
+**Easiest**: in Finder, **right-click** on `Browser.app` → **"Open"** → confirm the dialog. Subsequent launches work normally.
 
-**Brže preko terminala**:
+**Faster, via terminal**:
 
 ```bash
 xattr -cr /Applications/Browser.app
 open /Applications/Browser.app
 ```
 
-`xattr -cr` ukloni quarantine atribut koji macOS dodaje skinutim fileovima, pa Gatekeeper više ne pita.
+`xattr -cr` strips the quarantine attribute macOS adds to downloaded files, so Gatekeeper stops asking.
 
-### Što ti treba
+### System requirements
 
-- macOS **14.0 Sonoma** ili noviji
-- Apple Silicon (M1/M2/M3) ili Intel — radi na oboma (universal binary)
+- macOS **14.0 Sonoma** or newer
+- Apple Silicon (M1/M2/M3) or Intel — works on both (universal binary)
 
-## Korištenje
+## Usage
 
-| Shortcut | Akcija |
+| Shortcut | Action |
 |---|---|
-| `Cmd+T` / `Cmd+W` | Novi / zatvori tab |
-| `Cmd+N` | Novi prozor |
-| `Cmd+L` | Fokus na address bar |
+| `Cmd+T` / `Cmd+W` | New / close tab |
+| `Cmd+N` | New window |
+| `Cmd+L` | Focus address bar |
 | `Cmd+R` | Reload |
-| `Cmd+D` | Bookmark / unbookmark trenutnu stranicu |
+| `Cmd+D` | Bookmark / unbookmark current page |
 | `Cmd+Shift+B` | Toggle bookmarks bar |
-| `Cmd+Opt+B` | Otvori **Bookmarks Manager** |
-| `Cmd+Opt+;` | Otvori **Passwords Manager** |
-| `Cmd+Shift+P` | Otvori **Profile Manager** |
+| `Cmd+Opt+B` | Open **Bookmarks Manager** |
+| `Cmd+Opt+;` | Open **Passwords Manager** |
+| `Cmd+Shift+P` | Open **Profile Manager** |
 | `Cmd+Shift+M` | Toggle mobile view (iPhone UA + 393×852 viewport) |
 | `Cmd+Shift+A` | Toggle ad blocker |
-| `Cmd+Shift+C` | Otvori **Claude Integration** sheet (MCP setup) |
-| `Cmd+Opt+I` | Otvori Web Inspector (ili samo right-click → Inspect Element) |
-| `Cmd+Shift+,` | Manage Profiles iz badge menija |
+| `Cmd+Shift+C` | Open **Claude Integration** sheet (MCP setup) |
+| `Cmd+Opt+I` | Open Web Inspector (or just right-click → Inspect Element) |
+| `Cmd+Shift+,` | Manage Profiles from the badge menu |
 
-## Multi-profil
+## Multi-profile
 
-Klikni profile badge gore desno (npr. ● Osobno) → izaberi profil iz **"Open in New Window"** sekcije → otvara se zasebni prozor sa svojim cookies, login state-om, bookmarks-ima i passwordsima. Možeš imati otvorena oba prozora istovremeno.
+Click the profile badge in the top-right (e.g. ● Personal) → pick a profile from the **"Open in New Window"** section → a separate window opens with its own cookies, login state, bookmarks, and passwords. You can have multiple windows open at once, one per profile.
 
-Brisanje profila → wipe **svih** podataka (cookies, history, bookmarks, passwords) za taj profil.
+Deleting a profile wipes **all** of its data (cookies, history, bookmarks, passwords).
 
-## Claude integracija (MCP)
+## Claude integration (MCP)
 
-Cmd+Shift+C → **Claude Integration** sheet → klik **"Copy command"** → paste u terminal. Restartaj Claude Code i mu Claude može upravljati preglednikom (18 toolova: navigate, click, fill, exec_js, screenshot, list_tabs, switch_profile, set_mobile_mode...).
+`Cmd+Shift+C` → **Claude Integration** sheet → click **"Copy command"** → paste in your terminal. Restart Claude Code and Claude can drive the browser via 18 tools (navigate, click, fill, exec_js, screenshot, list_tabs, switch_profile, set_mobile_mode, ...).
 
-Server radi na `localhost:9876/mcp` s bearer auth tokenom (UUID, generiran na prvom launchu, spremljen u UserDefaults).
+The server runs on `localhost:9876/mcp` with a bearer token (UUID, generated on first launch and persisted in UserDefaults).
 
-## Build iz source-a
+## Build from source
 
-Za developere:
+For developers:
 
 ```bash
 git clone https://github.com/marino143/native-browser.git
 cd native-browser
 open Browser.xcodeproj
-# Cmd+R u Xcode
+# Cmd+R in Xcode
 ```
 
-Ili komandno:
+Or via the command line:
 
 ```bash
 xcodebuild -project Browser.xcodeproj -scheme Browser -configuration Release build
 open ~/Library/Developer/Xcode/DerivedData/Browser-*/Build/Products/Release/Browser.app
 ```
 
-Treba ti macOS Sonoma (14.0+) i Xcode 15+.
+Requires macOS Sonoma (14.0+) and Xcode 15+.
 
-## Arhitektura
+## Architecture
 
 ```
 Browser/
@@ -125,7 +125,7 @@ Browser/
 └── Services/
     ├── BrowserServices.swift            # singleton: profiles, MCP, ad blocker, memory saver
     ├── MCPServer.swift                  # local HTTP/JSON-RPC server on port 9876
-    ├── BrowserTools.swift               # 18 MCP tools targeting active window
+    ├── BrowserTools.swift               # 18 MCP tools targeting the active window
     ├── AutofillBridge.swift             # JS injection + form detection
     ├── PasswordStore.swift              # Keychain Services wrapper
     ├── ProfileManager.swift             # profile JSON persistence
@@ -134,35 +134,35 @@ Browser/
     └── BlockerRules.swift               # ~70 blocked ad/tracking domains
 ```
 
-**Singleton:** `BrowserServices.shared` drži cross-window state (profiles, MCP, ad blocker rules, memory saver).
-**Per-window:** `BrowserState` ima tabove, currentProfile, bookmarks. Svaki novi prozor = novi BrowserState.
-**MCP target:** `WindowAccessor` mapira NSWindow → BrowserState; kad neki prozor postane key, MCP retargets na njega.
+**Singleton**: `BrowserServices.shared` holds cross-window state (profiles, MCP, ad blocker rules, memory saver).
+**Per-window**: `BrowserState` owns tabs, currentProfile, bookmarks. Each new window = a new BrowserState.
+**MCP target**: `WindowAccessor` maps NSWindow → BrowserState; whenever a window becomes key, MCP retargets to it.
 
-## Privatnost
+## Privacy
 
-- Sve ostaje **lokalno** na tvom Macu
-- Profili → `~/Library/Application Support/Browser/profiles/<UUID>/`
-- Passwords → tvoj macOS Keychain (synchronizable flag postavljen → iCloud sync čim app dobije Apple Developer signing)
-- Cookies / cache / localStorage / IndexedDB → `WKWebsiteDataStore(forIdentifier: profile.UUID)` — system-managed po profilu
+- Everything stays **local** to your Mac
+- Profiles → `~/Library/Application Support/Browser/profiles/<UUID>/`
+- Passwords → your macOS Keychain (synchronizable flag is set → iCloud sync activates as soon as the app is signed with an Apple Developer ID)
+- Cookies / cache / localStorage / IndexedDB → `WKWebsiteDataStore(forIdentifier: profile.UUID)` — system-managed per profile
 - Default search engine: **DuckDuckGo** (no tracking)
-- Default ad blocker: **on** (blokira ~70 domena: Google Ads, Facebook tracking, Criteo, Outbrain, Taboola, Mixpanel, Hotjar, GA, GTM...)
-- **Nema telemetry-a, nema analitike, nema "phone home"** logike u kodu
+- Default ad blocker: **on** (blocks ~70 domains: Google Ads, Facebook tracking, Criteo, Outbrain, Taboola, Mixpanel, Hotjar, GA, GTM, ...)
+- **No telemetry, no analytics, no "phone home"** logic anywhere in the code
 
 ## Status
 
-**v0.1.0** — početni public release. Stabilno za dnevno korištenje, ali još neke v2 stvari fale:
+**v0.1.0** — initial public release. Stable for daily use, but a few v2 things are still missing:
 
-- 🔐 Touch ID gate za reveal/copy passworda
+- 🔐 Touch ID gate for password reveal/copy
 - 🎲 Strong password generator
-- 🔄 Update prompt kad se lozinka promijeni
-- 📥 Import iz Safari/Chrome (CSV)
-- 📜 History UI (sad samo `WKBackForwardList` per-tab)
+- 🔄 Update prompt when a saved password changes
+- 📥 Import from Safari/Chrome (CSV)
+- 📜 History UI (currently only `WKBackForwardList` per tab)
 - 🔍 Find in page (Cmd+F)
 - 📥 Downloads UI
-- 🌐 Vertikalni tab bar (za 100+ tabova)
-- 🧩 Apple Developer Team ID za potpis (omogućuje iCloud Keychain sync, uklanja Gatekeeper warning)
+- 🌐 Vertical tab bar (for 100+ tab workflows)
+- 🧩 Apple Developer Team ID signing (enables iCloud Keychain sync, removes the Gatekeeper warning)
 
-PR-ovi dobrodošli.
+PRs welcome.
 
 ## License
 

@@ -46,7 +46,7 @@ struct ProfileManagerView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             HStack(spacing: 8) {
-                TextField("Name (e.g. Klijent 1)", text: $newProfileName)
+                TextField("Name (e.g. Client 1)", text: $newProfileName)
                     .textFieldStyle(.roundedBorder)
                     .onSubmit { add() }
                 ColorSwatchPicker(colorIndex: $newProfileColorIndex)
