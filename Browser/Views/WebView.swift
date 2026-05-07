@@ -2,13 +2,14 @@ import SwiftUI
 import WebKit
 
 struct WebView: View {
+    @EnvironmentObject var state: BrowserState
     @ObservedObject var tab: Tab
 
     var body: some View {
         if tab.mobileMode {
             mobileLayout
         } else {
-            WebViewBridge(tab: tab)
+            WebViewBridge(tab: tab, state: state)
         }
     }
 
@@ -34,7 +35,7 @@ struct WebView: View {
                     let availableHeight = max(400, geo.size.height - 60)
                     let frameHeight = min(852, availableHeight)
 
-                    WebViewBridge(tab: tab)
+                    WebViewBridge(tab: tab, state: state)
                         .frame(width: 393, height: frameHeight)
                         .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
                         .overlay(
@@ -53,6 +54,7 @@ struct WebView: View {
 
 private struct WebViewBridge: NSViewRepresentable {
     @ObservedObject var tab: Tab
+    let state: BrowserState
 
     func makeNSView(context: Context) -> WKWebView {
         // Caller must only mount this when tab.webView != nil (ContentView enforces that).
@@ -70,14 +72,16 @@ private struct WebViewBridge: NSViewRepresentable {
 
     func updateNSView(_ nsView: WKWebView, context: Context) {}
 
-    func makeCoordinator() -> Coordinator { Coordinator(tab: tab) }
+    func makeCoordinator() -> Coordinator { Coordinator(tab: tab, state: state) }
 
     final class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
         let tab: Tab
+        weak var state: BrowserState?
         private var observers: [NSKeyValueObservation] = []
 
-        init(tab: Tab) {
+        init(tab: Tab, state: BrowserState) {
             self.tab = tab
+            self.state = state
             super.init()
         }
 
@@ -111,12 +115,49 @@ private struct WebViewBridge: NSViewRepresentable {
             })
         }
 
+        // MARK: - Open-in-new-tab routing
+        //
+        // Cmd+click       → background tab (don't steal focus)
+        // Cmd+Shift+click → foreground tab
+        // target=_blank /
+        // window.open()   → foreground tab
+        // Middle click    → background tab (mouse button 2 in WebKit)
+
+        func webView(_ webView: WKWebView,
+                     decidePolicyFor navigationAction: WKNavigationAction,
+                     decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+            let modifiers = navigationAction.modifierFlags
+            let isCmdClick = modifiers.contains(.command)
+            let isMiddleClick = navigationAction.buttonNumber == 4
+
+            // Only intercept primary-frame navigations that have a URL and are user-initiated.
+            if let url = navigationAction.request.url,
+               navigationAction.targetFrame?.isMainFrame == true,
+               isCmdClick || isMiddleClick {
+                decisionHandler(.cancel)
+                let foreground = isCmdClick && modifiers.contains(.shift)
+                let stateRef = state
+                Task { @MainActor in
+                    stateRef?.newTab(url: url, source: .user, selectNewTab: foreground)
+                }
+                return
+            }
+            decisionHandler(.allow)
+        }
+
         func webView(_ webView: WKWebView,
                      createWebViewWith configuration: WKWebViewConfiguration,
                      for navigationAction: WKNavigationAction,
                      windowFeatures: WKWindowFeatures) -> WKWebView? {
+            // target="_blank" or window.open() — open as a new tab in the same window.
             if let url = navigationAction.request.url {
-                webView.load(URLRequest(url: url))
+                let modifiers = navigationAction.modifierFlags
+                // If user Cmd+clicked a target=_blank link, keep it in the background.
+                let foreground = !modifiers.contains(.command)
+                let stateRef = state
+                Task { @MainActor in
+                    stateRef?.newTab(url: url, source: .user, selectNewTab: foreground)
+                }
             }
             return nil
         }

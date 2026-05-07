@@ -12,7 +12,11 @@ final class BrowserState: ObservableObject {
     }
     @Published var currentProfileID: UUID
     @Published var bookmarks: [Bookmark] = []
-    @Published var showBookmarksBar: Bool = true
+    @Published var showBookmarksBar: Bool = true {
+        didSet {
+            UserDefaults.standard.set(showBookmarksBar, forKey: "showBookmarksBar")
+        }
+    }
     @Published var addressBarFocusToken: Int = 0
     @Published var showingProfileManager: Bool = false
     @Published var showingClaudeIntegration: Bool = false
@@ -44,6 +48,11 @@ final class BrowserState: ObservableObject {
         currentProfileID = resolved.id
         services.bookmarksManager.migrateLegacyIfNeeded(toProfile: resolved.id)
         bookmarks = services.bookmarksManager.load(for: resolved.id)
+
+        // Restore bookmarks-bar visibility from the previous session.
+        // Note: setting in init doesn't fire didSet (Swift doesn't call observers
+        // during init), so this is a clean load with no spurious write-back.
+        showBookmarksBar = UserDefaults.standard.object(forKey: "showBookmarksBar") as? Bool ?? true
 
         services.register(state: self)
         newTab()
@@ -84,13 +93,15 @@ final class BrowserState: ObservableObject {
         pendingPasswordSave = nil
     }
 
-    func newTab(url: URL? = nil, source: TabSource = .user) {
+    func newTab(url: URL? = nil, source: TabSource = .user, selectNewTab: Bool = true) {
         guard let profile = currentProfile else { return }
         let tab = Tab(configuration: makeConfig(for: profile))
         tab.source = source
         tab.lastActivatedAt = Date()
         tabs.append(tab)
-        currentTabID = tab.id
+        if selectNewTab {
+            currentTabID = tab.id
+        }
         if let url = url {
             tab.webView?.load(URLRequest(url: url))
             tab.urlString = url.absoluteString
