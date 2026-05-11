@@ -5,13 +5,33 @@ import WebKit
 final class AdBlocker {
     static let shared = AdBlocker()
 
-    private let identifier = "BrowserAdBlock-v1"
+    /// Bump this when BlockerRules.json materially changes so users pick up
+    /// the new rules instead of the cached compiled list.
+    private let identifier = "BrowserAdBlock-v2"
 
     func loadRules() async throws -> WKContentRuleList {
+        await purgeOldVersions()
         if let existing = await fetch() {
             return existing
         }
         return try await compile()
+    }
+
+    /// Drop any previously-compiled rule lists from older versions so the
+    /// WKContentRuleListStore doesn't keep them on disk forever.
+    private func purgeOldVersions() async {
+        guard let store = WKContentRuleListStore.default() else { return }
+        let current = identifier
+        let identifiers: [String] = await withCheckedContinuation { cont in
+            store.getAvailableContentRuleListIdentifiers { ids in
+                cont.resume(returning: ids ?? [])
+            }
+        }
+        for id in identifiers where id != current && id.hasPrefix("BrowserAdBlock-") {
+            await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in
+                store.removeContentRuleList(forIdentifier: id) { _ in cont.resume() }
+            }
+        }
     }
 
     private func fetch() async -> WKContentRuleList? {
